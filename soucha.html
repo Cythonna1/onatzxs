@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Onat Zekovski</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://use.typekit.net/wog2xbr.css">
+</head>
+<body>
+    <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+
+    <header class="navbar">
+        <div class="navbar-container">
+          <nav class="nav-links">
+            <a href="index.html" data-target="#hero">Home</a>
+            <a href="#" data-target="#about">About</a>
+            <a href="#">Contact</a>
+          </nav>
+        </div>
+      </header>
+    <section class="project-hero">
+        <img src="images/Soucha/souchahero.png" alt="Soucha Project Banner">
+        </section>
+        <section class="about-project">
+            <div  class="about-left" id="about-heading">
+              <h2>THE BRAND</h2>
+              <a href="https://sportingks.com" target="_blank" class="project-link"></a>
+            </div>
+          
+            <div class="about-right">
+              <div class="project-details">
+                <div class="detail-row">
+                  <span>Country</span>
+                  <span>Kosovo</span>
+                </div>
+                <div class="detail-row">
+                  <span>Branch</span>
+                  <span>Handmade Soaps</span>
+                </div>
+                <div class="detail-row">
+                  <span>Duration</span>
+                  <span><strong>2 Months</strong></span>
+                </div>
+              </div>
+          
+              <div class="project-description">
+                <p>
+                    I worked with Soucha, a home studio creating handcrafted soaps using natural, bio ingredients. I developed their visual identity, using florals and petals as the foundation of the branding. The logo was inspired by the organic shape of their soaps, while the color palette—centered on soft pinks and whites—was designed to be flexible, adapting to each soap’s unique ingredients and hues. I also directed and photographed product shoots, choosing natural settings to reflect the brand’s essence and values.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section class="image-stack">
+            <!-- Horizontal Image -->
+            <div class="horizontal">
+              <img src="images/Soucha/souchalogo1.png" alt="Horizontal Image">
+            </div>
+          
+            <!-- Two Vertical Images Side-by-Side -->
+            <div class="vertical-pair">
+              <img src="instagram2.jpg" alt="Vertical 1">
+              <img src="website1.jpg" alt="Vertical 2">
+            </div>
+
+            <!-- Horizontal Image -->
+            <div class="horizontal">
+                <img src="Hero.jpg" alt="Horizontal Image">
+              </div>
+
+              <div class="horizontal">
+                <img src="Babolat.png" alt="Horizontal Image">
+              </div>
+              <div class="horizontal">
+                <img src="Speedo.png" alt="Horizontal Image">
+              </div>
+              <div class="horizontal">
+                <img src="Babolat1.png" alt="Horizontal Image">
+              </div>
+              <div class="horizontal">
+                <img src="SCALE.png" alt="Horizontal Image">
+              </div>
+              <div class="horizontal">
+                <img src="DSC_1694.png" alt="Horizontal Image">
+              </div>
+              <!-- Two Vertical Images Side-by-Side -->
+              <div class="vertical-pair">
+                <img src="trifold1.jpg" alt="Vertical 1">
+                <img src="website1.jpg" alt="Vertical 2">
+              </div>
+
+          </section>
+
+          <script>const coords = { x: 0, y: 0 };
+            const circles = document.querySelectorAll(".circle");
+            
+            const colors = [
+              "#212529",
+              "#212529",
+              "#212529",
+              "#212529",
+              "#212529",
+              "#212529",
+              "#212529",
+              "#212529",
+              "#212529",
+              "#212529",
+              "#212529",
+              "#212529",
+              "#212529",
+              "#212529",
+              "#212529",
+              "#212529",
+              "#212529",
+              "#212529",
+              "#212529",
+              "#212529",
+              "#212529",
+              "#212529",
+            ];
+            
+            circles.forEach(function (circle, index) {
+              circle.x = 0;
+              circle.y = 0;
+              circle.style.backgroundColor = colors[index % colors.length];
+            });
+            
+            window.addEventListener("mousemove", function(e){
+              coords.x = e.clientX;
+              coords.y = e.clientY;
+              
+            });
+            
+            function animateCircles() {
+              
+              let x = coords.x;
+              let y = coords.y;
+              
+              circles.forEach(function (circle, index) {
+                circle.style.left = x - 12 + "px";
+                circle.style.top = y - 12 + "px";
+                
+                circle.style.scale = (circles.length - index) / circles.length;
+                
+                circle.x = x;
+                circle.y = y;
+            
+                const nextCircle = circles[index + 1] || circles[0];
+                x += (nextCircle.x - x) * 0.3;
+                y += (nextCircle.y - y) * 0.3;
+              });
+             
+              requestAnimationFrame(animateCircles);
+            }
+            
+            animateCircles();
+
+
+            
+            </script>
+<footer class="footer">
+  <div class="footer-column left">
+    <p>Kosovo</p>
+    <p id="clock">00:00:00</p>
+  </div>
+  <div class="footer-column center">
+ 
+  </div>
+  <div class="footer-column right">
+    <a href="https://linkedin.com/in/yourprofile" target="_blank">LINKEDIN</a>
+    <a href="https://behance.net/yourprofile" target="_blank">BEHANCE</a>
+    <a href="#" class="scroll-top">↑</a>
+  </div>
+</footer>
+          </body>
+</html>
