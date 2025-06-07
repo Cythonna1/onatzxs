@@ -139,7 +139,7 @@
   
   .project-text h3 {
     font-size: 1.5rem;
-    margin-bottom: 25rem;
+    margin-bottom: 1rem;
     font-family: "input-mono", monospace;
     font-weight: 600;
     font-style: italic;
@@ -517,5 +517,261 @@ box-shadow: inset 1000px 0 0 0 #000000;
     .about-project {
       flex-direction: column;
       gap: 2rem;
+    }
+  }
+
+  /* ------------------------------
+   Mobile Responsiveness
+------------------------------ */
+@media (max-width: 768px) {
+  .navbar-container {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+  }
+
+  .nav-links {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 1rem;
+    padding-right: 1rem;
+  }
+
+  .hero {
+    height: auto;
+    padding: 1rem;
+    margin-top: 200px;
+  }
+
+  .hero img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .about-us {
+    margin-top: 500px;
+    margin-bottom: 500px;
+    padding: 1.5rem;
+    height: auto;
+    
+  }
+
+  .about-content p {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+
+  .projects-section {
+    width: 90%;
+    margin-right: 0;
+    margin-left: 5%;
+    padding: 0rem 0rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0rem;
+  }
+  
+  .project-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .project-card-inner {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .project-text {
+    padding: 0;
+    margin-bottom: 1rem;
+    
+  }
+
+  .project-text h3{
+    font-size: 1.25rem;
+    margin-bottom: 0rem;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      font-family: "input-mono", monospace;
+      font-weight: 600;
+      font-style: italic;
+    }
+    .alt-font {
+      font-size: 1rem;
+      font-family: "input-mono", monospace;
+      font-weight: 200;
+      font-style: italic;
+  
+    
+
+  }
+  .project-text p {
+    font-size: 0.5rem;
+  }
+
+  .project-image {
+    width: 100%;
+    height: auto;
+  }
+
+  .project-image img {
+    width: 100%;
+    height: auto;
+  }
+
+  .contact-section h2 {
+    font-size: 2rem;
+    margin: 0 1rem;
+  }
+
+  .footer {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .footer-column {
+    justify-content: center;
+  }
+
+  .button {
+    width: 80px;
+    height: 80px;
+  }
+
+  .button__circle {
+    width: 30px;
+    height: 30px;
+  }
+
+  .button__text {
+    font-size: 0.8rem;
+  }
+}
+
+ .project-hero {
+    width: 100%;
+    height: 100vh;
+    margin: auto;
+    display: flex;
+    justify-content: center; /* center horizontally */
+    overflow: hidden;
+    position: relative;
+   
+  }
+  
+  .project-hero img {
+    width: 99%;
+    height: 93%;
+    object-fit: cover;
+    display: block;
+    border-radius: 10px;
+  }
+  
+  .about-project {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 4rem 2rem;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .about-left {
+    flex: 1;
+  }
+  
+  .about-left h2 {
+    margin-bottom: 2rem;
+    font-size: 3rem;
+  font-family: "input-mono", monospace;
+    font-weight: 600;
+    font-style: italic;
+
+  }
+  
+  .project-link {
+    text-decoration: none;
+    color: inherit;
+    font-size: 1rem;
+    border-bottom: 1px solid currentColor;
+    font-family: "input-mono", monospace;
+      font-weight: 200;
+      font-style: italic;
+  }
+  
+  .about-right {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .project-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-size: 1rem;
+    font-family: "input-mono", monospace;
+      font-weight: 200;
+      font-style: italic;
+  }
+  
+  .detail-row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.5rem;
+  }
+  
+  .project-description p {
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    font-family: "input-mono", monospace;
+      font-weight: 200;
+      font-style: italic;
+  }
+
+
+  .image-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .horizontal img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+  }
+  
+  .vertical-pair {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .vertical-pair img {
+    flex: 1;
+    width: 100%;
+    max-height: 980px; /* Adjust this value as needed */
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+  }
+  
+  /* Responsive: stack verticals on smaller screens */
+  @media (max-width: 768px) {
+    .vertical-pair {
+      flex-direction: column;
     }
   }
