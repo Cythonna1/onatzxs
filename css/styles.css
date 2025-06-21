@@ -502,7 +502,11 @@ box-shadow: inset 1000px 0 0 0 #000000;
     border-radius: 8px;
     display: block;
   }
-  
+  .fittrail {
+
+    max-width:100%;
+
+  }
   /* Responsive: stack verticals on smaller screens */
   @media (max-width: 768px) {
     .vertical-pair {
