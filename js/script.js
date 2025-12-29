@@ -69,8 +69,8 @@ const observer = new IntersectionObserver(entries => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        const rotateX = ((y - rect.height / 2) / rect.height) * 50;
-        const rotateY = ((x - rect.width / 2) / rect.width) * -50;
+        const rotateX = ((y - rect.height / 2) / rect.height) * 25;
+        const rotateY = ((x - rect.width / 2) / rect.width) * -25;
         inner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
         timeout = null;
           const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
