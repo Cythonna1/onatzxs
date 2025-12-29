@@ -73,6 +73,12 @@ const observer = new IntersectionObserver(entries => {
         const rotateY = ((x - rect.width / 2) / rect.width) * -50;
         inner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
         timeout = null;
+          const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+          const ROTATION_MULTIPLIER = isSafari ? 25 : 50; // Safari calmer
+
+          const rotateX = ((y - rect.height / 2) / rect.height) * ROTATION_MULTIPLIER;
+          const rotateY = ((x - rect.width / 2) / rect.width) * -ROTATION_MULTIPLIER
       }, 20); // updates every 20ms (~50 FPS max)
     });
   
