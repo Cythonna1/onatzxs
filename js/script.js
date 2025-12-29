@@ -10,11 +10,6 @@ const observer = new IntersectionObserver(entries => {
     observer.observe(section);
   });
 
-const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
-// tune these once
-const MAX_TILT = isSafari ? 50 : 25;
-
   
   function scrollToSection(targetSelector, duration = 1000) {
     const target = document.querySelector(targetSelector);
