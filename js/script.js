@@ -6,10 +6,11 @@ const observer = new IntersectionObserver(entries => {
       }
     });
   });
+  
   document.querySelectorAll('.hidden').forEach(section => {
     observer.observe(section);
   });
-
+  
   
   function scrollToSection(targetSelector, duration = 1000) {
     const target = document.querySelector(targetSelector);
@@ -68,16 +69,10 @@ const observer = new IntersectionObserver(entries => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        const rotateX = ((y - rect.height / 2) / rect.height) * 10;
-        const rotateY = ((x - rect.width / 2) / rect.width) * -10;
+        const rotateX = ((y - rect.height / 2) / rect.height) * 30;
+        const rotateY = ((x - rect.width / 2) / rect.width) * -30;
         inner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
         timeout = null;
-          const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
-          const ROTATION_MULTIPLIER = isSafari ? 25 : 50; // Safari calmer
-
-          const rotateX = ((y - rect.height / 2) / rect.height) * ROTATION_MULTIPLIER;
-          const rotateY = ((x - rect.width / 2) / rect.width) * -ROTATION_MULTIPLIER
       }, 20); // updates every 20ms (~50 FPS max)
     });
   
@@ -170,4 +165,3 @@ function animateCircles() {
 }
 
 animateCircles();
-
