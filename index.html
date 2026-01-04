@@ -64,7 +64,7 @@
         <!-- TOP SVG -->
         <div class="hero__svg hero__svg--top" aria-hidden="true">
           <!-- paste your TOP svg code here (inline) -->
-          <svg  class="heroTopSvg" id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 889.9 946.89">
+          <svg class="dot-svg" id="dots-top" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 889.9 946.89" preserveAspectRatio="xMidYMid meet" overflow="visible">
             <defs>
               <style>
                 .cls-1 {
@@ -72,7 +72,7 @@
                 }
               </style>
             </defs>
-            <g id="Layer_1-2" data-name="Layer 1">
+            <g id="dot-cloud-top" data-name="Layer 1">
               <g>
                 <rect class="cls-1" x="257.26" y="942.91" width="3.98" height="3.98" transform="translate(518.49 1889.8) rotate(180)"/>
                 <rect class="cls-1" x="242.9" y="942.91" width="3.98" height="3.98" transform="translate(489.78 1889.8) rotate(180)"/>
@@ -497,7 +497,7 @@
         </div>
         <!-- BOTTOM SVG -->
         <div class="hero__svg hero__svg--bottom" aria-hidden="true">
-          <svg class="heroBottomSvg" id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 889.9 946.89">
+          <svg class="dot-svg" id="dots-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 889.9 946.89" preserveAspectRatio="xMidYMid meet" overflow="visible">
             <defs>
               <style>
                 .cls-1 {
@@ -505,7 +505,7 @@
                 }
               </style>
             </defs>
-            <g id="Layer_1-2" data-name="Layer 1">
+            <g id="dot-cloud-bottom" data-name="Layer 1">
               <g>
                 <rect class="cls-1" x="628.67" width="3.98" height="3.98"/>
                 <rect class="cls-1" x="643.02" width="3.98" height="3.98"/>
@@ -929,88 +929,91 @@
         <h2 class="who-title">WHO AM I?</h2>
         <p class=" who-copy who-text text-block">
             a Graphic and UI/UX Designer from Kosovo
-            with a strong focus on social media design and ad creatives.
-            I create visually engaging content that helps brands communicate clearly, 
+            with a strong focus on social media design and <br> ad creatives.
+            I create visually engaging content <br> that helps brands communicate clearly, 
             stand out online, and drive engagement.
-            With a background in visual design and user-centered thinking, 
-            I combine aesthetics with strategy to deliver designs that are both impactful and effective.
+            With a background <br> in visual design and user-centered thinking,<br>
+            I combine aesthetics with strategy to deliver <br> designs that are both impactful and effective.
         </p>
         
       </section>
 
-      <section class="projects-section">
-        <article class="project-card hidden" onclick="window.open('sporting.html', '_blank')">
-          <div class="project-card-inner">
-          <div class="project-text">
-            <h3><em>SPORTING:</em><span class="alt-font">  Graphic Designer, Digital Marketing Manager</span></h3>
-            <p>Created social media content and ran Meta ad campaigns.</p>
-          </div>
-            <div class="project-image pixelate">
-              <img class="img-default" src="images/Sporting/Instagram1.jpg" alt="Project One">
-              <img class="img-hover" src="images/Sporting/CatalogBlack.jpg" alt="" aria-hidden="true">
-              <div class="pixel-grid"></div>
-            </div>
-          </div>
-        </article>
+      <section class="projects-section" id="projects">
+        <div class="projects-pin">
+          <div class="projects-track">
+              <article class="project-card hidden" onclick="window.open('sporting.html', '_blank')">
+                  <div class="project-card-inner">
+                    <div class="project-text">
+                      <h3><em>SPORTING:</em><span class="alt-font">  Graphic Designer, Digital Marketing Manager</span></h3>
+                      <p>Created social media content and ran Meta ad campaigns.</p>
+                    </div>
+                      <div class="project-image pixelate">
+                        <img class="img-default" src="images/Sporting/Instagram1.jpg" alt="Project One">
+                        <img class="img-hover" src="images/Sporting/CatalogBlack.jpg" alt="" aria-hidden="true">
+                        <div class="pixel-grid"></div>
+                      </div>
+                  </div>
+              </article>
       
         <!-- Repeat for other projects -->
-        <article class="project-card hidden" onclick="window.open('soucha.html', '_blank')">
-          <div class="project-card-inner">
-          <div class="project-text">
-            <h3><em>SOUCHA:</em><span class="alt-font"> Graphic Designer</span></h3>
-            <p>Developed branding and packaging for a handcrafted soap line.</p>
-          </div>
-          <div class="project-image pixelate">
-            <img class="img-default" src="images/Soucha/SOUCHABOX.jpg" alt="Project Two">
-            <img class="img-hover" src="images/Soucha/1.jpg" alt="" aria-hidden="true">
-            <div class="pixel-grid"></div>
-          </div>
-          </div>
-        </article>
+              <article class="project-card hidden" onclick="window.open('soucha.html', '_blank')">
+                 <div class="project-card-inner">
+                    <div class="project-text">
+                      <h3><em>SOUCHA:</em><span class="alt-font"> Graphic Designer</span></h3>
+                      <p>Developed branding and packaging for a handcrafted soap line.</p>
+                    </div>
+                      <div class="project-image pixelate">
+                        <img class="img-default" src="images/Soucha/SOUCHABOX.jpg" alt="Project Two">
+                        <img class="img-hover" src="images/Soucha/1.jpg" alt="" aria-hidden="true">
+                        <div class="pixel-grid"></div>
+                      </div>
+                    </div>
+              </article>
 
-        <article class="project-card hidden" onclick="window.open('ozzi.html', '_blank')">
-          <div class="project-card-inner">
-          <div class="project-text">
-            <h3><em>OZZI ART & DECOR:</em><span class="alt-font"> Graphic Designer</span></h3>
-            <p>Developed the brand’s visual identity and conducted product photoshoots.</p>
-          </div>
-          <div class="project-image pixelate">
-            <img class="img-default" src="images/Ozzi/OZZI.png" alt="Project Two">
-            <img class="img-hover" src="images/Ozzi/ozzi6.jpg" alt="" aria-hidden="true">
-            <div class="pixel-grid"></div>
-          </div>
-          </div>
-        </article>
+              <article class="project-card hidden" onclick="window.open('ozzi.html', '_blank')">
+                <div class="project-card-inner">
+                  <div class="project-text">
+                      <h3><em>OZZI ART & DECOR:</em><span class="alt-font"> Graphic Designer</span></h3>
+                      <p>Developed the brand’s visual identity and conducted product photoshoots.</p>
+                  </div>
+                    <div class="project-image pixelate">
+                      <img class="img-default" src="images/Ozzi/OZZI.png" alt="Project Two">
+                      <img class="img-hover" src="images/Ozzi/ozzi6.jpg" alt="" aria-hidden="true">
+                      <div class="pixel-grid"></div>
+                    </div>
+                  </div>
+              </article>
 
-        <article class="project-card hidden" onclick="window.open('sportingpro.html', '_blank')">
-          <div class="project-card-inner">
-          <div class="project-text">
-            <h3><em>SPORTINGPRO:</em><span class="alt-font"> Web Designer, Photographer</span></h3>
-            <p>Developed a website using WordPress and Elementor.</p>
-          </div>
-          <div class="project-image pixelate">
-            <img class="img-default" src="images/SportingPro/sportingpro.jpg" alt="Project Two">
-            <img class="img-hover" src="images/SportingPro/sportingpro2.jpg" alt="" aria-hidden="true">
-            <div class="pixel-grid"></div>
-          </div>
-          </div>
-        </article>
-        <article class="project-card hidden" onclick="window.open('fittrailux.html', '_blank')">
-          <div class="project-card-inner">
-          <div class="project-text">
-            <h3><em>FITTRAIL:</em><span class="alt-font"> UI/UX, Wireframes</span></h3>
-            <p>Personal UX project focused on designing a gamified fitness app. </p>
-          </div>
-          <div class="project-image">
-            <img src="images/Fittrail/intro.jpg" alt="Project Two">
-          </div>
-          </div>
-        </article>
+              <article class="project-card hidden" onclick="window.open('sportingpro.html', '_blank')">
+                <div class="project-card-inner">
+                   <div class="project-text">
+                     <h3><em>SPORTINGPRO:</em><span class="alt-font"> Web Designer, Photographer</span></h3>
+                     <p>Developed a website using WordPress and Elementor.</p>
+                   </div>
+                     <div class="project-image pixelate">
+                        <img class="img-default" src="images/SportingPro/sportingpro.jpg" alt="Project Two">
+                        <img class="img-hover" src="images/SportingPro/sportingpro2.jpg" alt="" aria-hidden="true">
+                        <div class="pixel-grid"></div>
+                     </div>
+                   </div>
+              </article>
+              <article class="project-card hidden" onclick="window.open('fittrailux.html', '_blank')">
+                <div class="project-card-inner">
+                  <div class="project-text">
+                      <h3><em>FITTRAIL:</em><span class="alt-font"> UI/UX, Wireframes</span></h3>
+                      <p>Personal UX project focused on designing a gamified fitness app. </p>
+                  </div>
+                    <div class="project-image">
+                      <img src="images/Fittrail/intro.jpg" alt="Project Two">
+                    </div>
+                  </div>
+              </article>
+            </div>
+        </div>
       </section>
 
-      <section class="contact-section">
+    <section class="contact-section">
         <h2>Let’s Collaborate</h2>
-      </section>
       <button class="button">
         <p class="button__text">
           <span style="--index: 0;">C</span>
@@ -1030,66 +1033,33 @@
    
           
         </p>
+        </button>
       
-        <div class="button__circle">
-          <svg
-            viewBox="0 0 14 15"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            class="button__icon"
-            width="14"
-          >
-            <path
-              d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-              fill="currentColor"
-            ></path>
-          </svg>
-      
-          <svg
-            viewBox="0 0 14 15"
-            fill="none"
-            width="14"
-            xmlns="http://www.w3.org/2000/svg"
-            class="button__icon button__icon--copy"
-          >
-            <path
-              d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z"
-              fill="currentColor"
-            ></path>
-          </svg>
-        </div>
-      </button>
-
-      <footer class="footer">
-        <div class="footer-column left">
-          <p>Kosovo</p>
-          <p id="clock">00:00:00</p>
-        </div>
-        <div class="footer-column center">
-       
-        </div>
-        <div class="footer-column right">
-          <a href="https://linkedin.com/in/yourprofile" target="_blank">LINKEDIN</a>
-          <a href="https://behance.net/yourprofile" target="_blank">BEHANCE</a>
-          <a href="#" class="scroll-top">↑</a>
-        </div>
-      </footer>
-
-      <script src="gsap.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/SplitText.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrambleTextPlugin.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
-
-      <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/DrawSVGPlugin.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/MotionPathPlugin.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/MorphSVGPlugin.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/Physics2DPlugin.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js"></script>
-      <!-- ScrollSmoother requires ScrollTrigger -->
-      <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollSmoother.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollToPlugin.min.js"></script>
+        
+        <footer class="footer">
+          <div class="footer-column left">
+            <p>Kosovo</p>
+            <p id="clock">20:24:03 GMT+2</p>
+          </div>
+          <div class="footer-column center">
+         
+          </div>
+          <div class="footer-column right">
+            <a href="https://linkedin.com/in/yourprofile" target="_blank">LINKEDIN</a>
+            <a href="https://behance.net/yourprofile" target="_blank">BEHANCE</a>
+            <a href="#" class="scroll-top">↑</a>
+          </div>
+        </footer>
+  
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+        
+        <!-- only keep these IF you truly use them in script.js -->
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollToPlugin.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrambleTextPlugin.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/SplitText.min.js"></script>
+        
+        <script src="js/script.js"></script>
             
       <script src="js/script.js"></script>
 </body>
