@@ -8,36 +8,7 @@
   <link rel="stylesheet" href="https://use.typekit.net/wog2xbr.css">
 </head>
 <body>
-    <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
-  <div class="circle"></div>
 
-    <header class="navbar">
-        <div class="navbar-container">
-          <nav class="nav-links">
-            <a href="index.html" data-target="#hero">Home</a>
-            <a href="#" data-target="#about">About</a>
-            <a href="#">Contact</a>
-          </nav>
-        </div>
-      </header>
     <section class="project-hero">
         <img src="images/Ozzi/ozzihero.png" alt="Sporting Project Banner">
         </section>
@@ -102,86 +73,7 @@
 
           </section>
 
-          <script>const coords = { x: 0, y: 0 };
-            const circles = document.querySelectorAll(".circle");
-            
-            const colors = [
-              "#212529",
-              "#212529",
-              "#212529",
-              "#212529",
-              "#212529",
-              "#212529",
-              "#212529",
-              "#212529",
-              "#212529",
-              "#212529",
-              "#212529",
-              "#212529",
-              "#212529",
-              "#212529",
-              "#212529",
-              "#212529",
-              "#212529",
-              "#212529",
-              "#212529",
-              "#212529",
-              "#212529",
-              "#212529",
-            ];
-            
-            circles.forEach(function (circle, index) {
-              circle.x = 0;
-              circle.y = 0;
-              circle.style.backgroundColor = colors[index % colors.length];
-            });
-            
-            window.addEventListener("mousemove", function(e){
-              coords.x = e.clientX;
-              coords.y = e.clientY;
-              
-            });
-            
-            function animateCircles() {
-              
-              let x = coords.x;
-              let y = coords.y;
-              
-              circles.forEach(function (circle, index) {
-                circle.style.left = x - 12 + "px";
-                circle.style.top = y - 12 + "px";
-                
-                circle.style.scale = (circles.length - index) / circles.length;
-                
-                circle.x = x;
-                circle.y = y;
-            
-                const nextCircle = circles[index + 1] || circles[0];
-                x += (nextCircle.x - x) * 0.3;
-                y += (nextCircle.y - y) * 0.3;
-              });
-             
-              requestAnimationFrame(animateCircles);
-            }
-            
-            animateCircles();
+          
 
-
-            
-            </script>
-<footer class="footer">
-  <div class="footer-column left">
-    <p>Kosovo</p>
-    <p id="clock">00:00:00</p>
-  </div>
-  <div class="footer-column center">
- 
-  </div>
-  <div class="footer-column right">
-    <a href="https://linkedin.com/in/yourprofile" target="_blank">LINKEDIN</a>
-    <a href="https://behance.net/yourprofile" target="_blank">BEHANCE</a>
-    <a href="#" class="scroll-top">↑</a>
-  </div>
-</footer>
           </body>
 </html>
