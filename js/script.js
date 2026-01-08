@@ -1,4 +1,206 @@
 
+// create the smooth scroller FIRST!
+let smoother = ScrollSmoother.create({
+  smooth: 4,
+  effects: true,
+  normalizeScroll: true
+});
+
+gsap.registerPlugin(ScrollTrigger);
+
+
+const heroTitle = document.querySelector(".hero__center");
+const heroText  = document.querySelector("#portfolioText");
+
+if (heroTitle && heroText) {
+  const tlHero = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#hero",
+      start: "top top",
+      end: "+=300",        // controls how long the effect lasts
+      scrub: true,
+      pin: heroTitle,      // pin ONLY the text
+      pinSpacing: false,   // 🔥 KEY FIX
+      anticipatePin: 1,
+      // markers: true
+    }
+  });
+
+  // Hold phase (~100px)
+  tlHero.to({}, { duration: 0.5 });
+
+  // Fade out phase (~100px)
+  tlHero.to(heroText, {
+    opacity: 0,
+    y: -60,
+    filter: "blur(8px)",
+    ease: "none"
+  });
+}
+
+
+gsap.registerPlugin(ScrollTrigger);
+
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  const words = text.replace(/\s+/g, " ").trim().split(" ");
+  let line = "";
+
+  for (let n = 0; n < words.length; n++) {
+    const testLine = line + words[n] + " ";
+    const w = ctx.measureText(testLine).width;
+    if (w > maxWidth && n > 0) {
+      ctx.fillText(line, x, y);
+      line = words[n] + " ";
+      y += lineHeight;
+    } else {
+      line = testLine;
+    }
+  }
+  ctx.fillText(line, x, y);
+}
+
+async function mosaicRevealAbout() {
+  const about = document.querySelector("#about");
+  const p = about?.querySelector(".who-html");
+  const canvas = about?.querySelector(".who-canvas");
+  if (!about || !p || !canvas) return;
+
+  // Wait for fonts so canvas matches text metrics
+  if (document.fonts?.ready) await document.fonts.ready;
+
+  const c = canvas.getContext("2d");
+  const off = document.createElement("canvas");
+  const offCtx = off.getContext("2d", { willReadFrequently: true });
+
+  const state = {
+    blocks: 100,
+    threshold: 0.65,
+    opacity: 1
+  };
+
+  let rect, cs, font, lineHeight, dpr;
+
+  function measure() {
+    dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+    rect = p.getBoundingClientRect();
+    cs = getComputedStyle(p);
+
+    font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+    lineHeight =
+      parseFloat(cs.lineHeight) ||
+      parseFloat(cs.fontSize) * 1.4;
+
+    // size canvas in device pixels
+    canvas.width = Math.round(rect.width * dpr);
+    canvas.height = Math.round(rect.height * dpr);
+
+    // map drawing coordinates to CSS pixels
+    c.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function render() {
+    if (!rect) return;
+
+    const w = rect.width;
+    const h = rect.height;
+
+    // blocks across => low-res buffer size
+    const blocks = Math.max(8, Math.round(state.blocks));
+    const lowW = blocks;
+    const lowH = Math.max(8, Math.round(blocks * (h / w)));
+
+    off.width = lowW;
+    off.height = lowH;
+
+    // draw text into low-res buffer
+    offCtx.setTransform(1, 0, 0, 1, 0, 0);
+    offCtx.clearRect(0, 0, lowW, lowH);
+
+    // scale so "CSS pixel" coords work in low-res buffer
+    offCtx.scale(lowW / w, lowH / h);
+
+    offCtx.fillStyle = cs.color || "#fff";
+    offCtx.font = font;
+    offCtx.textBaseline = "top";
+
+    const pad = 0;
+    const text = p.innerText; // cleaner than textContent
+    wrapText(offCtx, text, pad, pad, w - pad * 2, lineHeight);
+
+    // OPTIONAL threshold look (comment out for pure mosaic)
+    const img = offCtx.getImageData(0, 0, lowW, lowH);
+    const data = img.data;
+    const t = state.threshold;
+
+    for (let i = 0; i < data.length; i += 4) {
+      const lum =
+        (0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2]) / 255;
+      const v = lum > t ? 255 : 0;
+      data[i] = data[i + 1] = data[i + 2] = v;
+      // alpha stays as is
+    }
+    offCtx.putImageData(img, 0, 0);
+
+    // upscale to main canvas (pixelated)
+    c.save();
+    c.setTransform(dpr, 0, 0, dpr, 0, 0);
+    c.clearRect(0, 0, w, h);
+    c.globalAlpha = state.opacity;
+    c.imageSmoothingEnabled = false;
+    c.drawImage(off, 0, 0, w, h);
+    c.restore();
+  }
+
+  // Initial states
+  gsap.set(p, { opacity: 0 });
+  gsap.set(canvas, { opacity: 1 });
+
+  measure();
+  render();
+
+  // Timeline
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: about,
+      start: "top 70%",
+      once: true,
+      onRefresh: () => {
+        measure();
+        render();
+      }
+      // markers: true
+    },
+    onUpdate: render,
+    onComplete: () => {
+      // crossfade to crisp HTML
+      gsap.to(canvas, { opacity: 0, duration: 0.35, ease: "power2.out" });
+      gsap.to(p, { opacity: 1, duration: 0.35, ease: "power2.out" });
+    }
+  });
+
+  // AE-style blocks → clean
+  tl.to(state, { blocks: 10, duration: 0.2, ease: "none" }, 0);      // very chunky
+  tl.to(state, { blocks: 120, duration: 0.45, ease: "power2.out" }, 0.1);
+  tl.to(state, { blocks: 480, duration: 0.6, ease: "power2.out" }, 0.35);
+  tl.to(state, { blocks: 1600, duration: 0.8, ease: "power2.out" }, 0.7); // very fine
+  // Threshold easing (optional)
+  tl.to(state, { threshold: 0.50, duration: 0.8, ease: "power2.out" }, 0);
+  tl.to(state, { threshold: 0.30, duration: 0.8, ease: "power2.out" }, 0.7);
+
+  // If window resizes before reveal triggers, keep canvas correct
+  window.addEventListener("resize", () => {
+    measure();
+    render();
+    ScrollTrigger.refresh();
+  });
+}
+
+window.addEventListener("load", () => {
+  mosaicRevealAbout();
+});
+
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
   // ---------- 1) Reveal system (fixes "about is gone") ----------
@@ -127,109 +329,49 @@ document.querySelectorAll(".project-image.pixelate").forEach((wrap) => {
   wrap.addEventListener("mouseleave", hide);
 });
 
+gsap.registerPlugin(ScrollTrigger, ScrambleTextPlugin);
 
+function scrambleReveal(el, opts = {}) {
+  const finalText = el.textContent.trim();
 
+  // start hidden-ish
+  gsap.set(el, { opacity: 0, y: 12 });
 
-
-const coords = { x: 0, y: 0 };
-const circles = document.querySelectorAll(".circle");
-
-const colors = [
-  "#ffffff",
-  "#ffffff",
-  "#ffffff",
-  "#ffffff",
-  "#ffffff",
-  "#ffffff",
-  "#ffffff",
-  "#ffffff",
-  "#ffffff",
-  "#ffffff",
-  "#ffffff",
-  "#ffffff",
-  "#ffffff",
-  "#ffffff",
-  "#ffffff",
-  "#ffffff",
-  "#ffffff",
-  "#ffffff",
-  "#ffffff",
-  "#ffffff",
-];
-
-circles.forEach(function (circle, index) {
-  circle.x = 0;
-  circle.y = 0;
-  circle.style.backgroundColor = colors[index % colors.length];
-});
-
-window.addEventListener("mousemove", function(e){
-  coords.x = e.clientX;
-  coords.y = e.clientY;
-  
-});
-
-function animateCircles() {
-  
-  let x = coords.x;
-  let y = coords.y;
-  
-  circles.forEach(function (circle, index) {
-    circle.style.left = x - 12 + "px";
-    circle.style.top = y - 12 + "px";
-    
-    circle.style.scale = (circles.length - index) / circles.length;
-    
-    circle.x = x;
-    circle.y = y;
-
-    const nextCircle = circles[index + 1] || circles[0];
-    x += (nextCircle.x - x) * 0.3;
-    y += (nextCircle.y - y) * 0.3;
-  });
- 
-  requestAnimationFrame(animateCircles);
-}
-
-animateCircles();
-
-
-// 1) Split paragraph into chars
-const whoCopy = document.querySelector(".who-copy");
-const st = SplitText.create(whoCopy, { type: "chars", charsClass: "char" });
-
-// 2) Set default overlay content (pixel symbol)
-st.chars.forEach((ch) => {
-  ch.setAttribute("data-scr", "∙"); // try ":", "█", "·", "▦"
-});
-
-const RADIUS = 60;
-
-whoCopy.addEventListener("pointermove", (e) => {
-  st.chars.forEach((ch) => {
-    const r = ch.getBoundingClientRect();
-    const cx = r.left + r.width / 1;
-    const cy = r.top + r.height / 1;
-
-    const dx = e.clientX - cx;
-    const dy = e.clientY - cy;
-    const dist = Math.hypot(dx, dy);
-
-    if (dist < RADIUS) {
-      ch.classList.add("pix-on");
-
-      // optional: randomize pixel symbol a bit
-      const pool = ["█", "▦"];
-      ch.setAttribute("data-scr", pool[(Math.random() * pool.length) | 0]);
-    } else {
-      ch.classList.remove("pix-on");
+  return gsap.to(el, {
+    opacity: 1,
+    y: 0,
+    duration: opts.duration ?? 4,
+    ease: "power2.out",
+    scrambleText: {
+      text: finalText,
+      chars: opts.chars ?? "upperAndLowerCase",
+      speed: opts.speed ?? 0.1,
+      revealDelay: opts.revealDelay ?? 0.15,
+      tweenLength: true
     }
   });
+}
+
+window.addEventListener("load", () => {
+  const about = document.querySelector("#about");
+  const title = document.querySelector("#aboutTitle");
+  const copy  = document.querySelector("#aboutCopy");
+  if (!about || !title || !copy) return;
+
+  // timeline triggers once when About enters
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: about,
+      start: "top 70%",
+      once: true
+      // markers: true
+    }
+  });
+
+  tl.add(scrambleReveal(title, { duration: 1.5, chars: "upperCase", speed: 0.7 }), 0);
+  tl.add(scrambleReveal(copy,  { duration: 3, chars: "▀ ▄ ▀", speed: 0.5, revealDelay: 0.05 }), 0.15);
 });
 
-whoCopy.addEventListener("pointerleave", () => {
-  st.chars.forEach((ch) => ch.classList.remove("pix-on"));
-});
 
 
 gsap.registerPlugin(ScrambleTextPlugin);
@@ -389,6 +531,13 @@ function enableMouseRepel(dots) {
 }
 
 
+mm.add("(max-width: 768px)", () => {
+  // ✅ MOBILE: kill the pinned horizontal trigger + reset transforms
+  const st = ScrollTrigger.getById("projectsHorizontal");
+  if (st) st.kill(true);
 
+  gsap.set(".projects-track", { clearProps: "transform" });
+  gsap.set(".projects-pin", { clearProps: "height,overflow" });
+});
 
 
