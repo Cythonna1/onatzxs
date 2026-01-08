@@ -6,59 +6,34 @@
   }
   
   body {
-    cursor:none;
     background-color: #000;
   }
-
+  #smooth-content {
+    overflow: visible;
+  width: 100%;
+  /* set a height because the contents are position: absolute, thus natively there's no height */
+  height: auto;
+  }
    /* Normal vertical sections */
-  .hero, .about-us, .contact-section .footer{
+  .hero, .about-us, .contact-section{
   min-height: 100vh;
 }
 
-  
-  .circle {
-    height: 24px;
-    width: 24px;
-    border-radius: 24px;
-    background-color: white;
-    position: fixed; 
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    z-index: 99999999; /* so that it stays on top of all other elements */
-  }
-  /* Navbar styles */
-  .navbar {
-    background-color: #000;
-    padding:0.5rem 1rem;
-  }
-  
-  .navbar-container {
-    display: flex;
-    justify-content: flex-end;
-    gap:1rem;
-  }
-  
-  .nav-links {
-    display: flex;
-    gap: 1.5rem;
-  }
-  
-  .nav-links a {
-    text-decoration: none;
-    color: #ffffff;
-    font-family: "input-mono", monospace;
-    font-weight: 200;
-    font-style: italic;
-    transition: color 0.2s ease;
-  }
-  
-  .nav-links a:hover {
-    color: #696969;
-  }
+.hero__center {
+  will-change: transform, opacity, filter;
+  margin:auto;
+  left:27%;
+}
+#portfolioText {
+  display: inline-block;
+  will-change: transform, opacity, filter;
+}
 
+.hero { position: relative; }
+.hero__center { position: relative; z-index: 2; }
+
+  
   .hero{
-    position: relative;
     width: 100%;
     overflow: hidden;
     background: #000; /* or your current bg */
@@ -102,21 +77,17 @@
     letter-spacing: 0.06em;
     color: #fff;
     margin: 0;
+    transform: translateX(-50%);
+    z-index: 100;
+    text-align: center;
+    will-change: transform;
   }
   .hero .hero-title,
   .hero .hero-subtitle {
    position: relative;
    z-index: 2;
 }
-  .hero__subtitle{
-    margin-top: 14px;
-    font-family: "helvetica-neue-lt-pro", sans-serif;
-    font-weight: 100;
-    font-style: italic;
-    font-size: clamp(14px, 1.6vw, 22px);
-    color: rgba(255,255,255,0.75);
-  }
-  
+
 
   .dot-cloud > * {
     transform-box: fill-box;
@@ -128,7 +99,6 @@
 
   .about-us {
     width: 100%;
-    background-color: #000000;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -160,7 +130,32 @@
     font-family: "input-mono", monospace;
     font-weight: 200;
     font-style: italic;
+    display:block;
   }
+
+  .who-reveal{
+    position: relative;
+    max-width: 100%;
+    
+  }
+  
+  .who-html{
+    position: relative;
+    z-index: 1;
+    opacity: 0;     
+  }
+  
+  .who-canvas{
+    position: absolute;
+    inset: 0;
+    width: 70%;
+    height: 70%;
+    z-index: 2;
+    pointer-events: none;
+    margin:auto;
+    
+  }
+
   .who-title{
     font-family: "helvetica-neue-lt-pro", sans-serif;
     font-weight: 200;
@@ -176,17 +171,21 @@
     font-style: italic;
     font-size: clamp(17px, 2vw, 38px);
     line-height: 1.4;
-    word-spacing: 0.50em;
-    max-width: 70%;
+    word-spacing: 0.10em;
+    width:70%;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     color: #fff;
+    margin:auto;
+    white-space: normal;
   }
   
   .who-copy .char{
-    display: inline-block;
+    display: inline;
     position: relative;
     white-space: pre;
+    line-height: inherit;
+    vertical-align: baseline;
   }
   
   .who-copy .char::after{
@@ -208,6 +207,10 @@
     color: #fff;
   }
   
+  .who-copy, .who-copy * {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+  }
   
   /* photo “pills” */
   .inline-img{
@@ -251,31 +254,32 @@
 .projects-track{
   display: flex;
   flex-wrap: nowrap;
-  gap: 40px;
+  gap: 100px;
   padding: 0 8vw;
   will-change: transform;
 }
 
 .project-card{
-  flex: 0 0 80vw;      /* force horizontal */
+  flex: 0 0 120vw;      /* force horizontal */
   max-width: 1200px;   /* keep your “nice block” limit */
   height: 70vh;
-  margin: 0;
+  margin: 5vw;
   background: #000;
 }
   .project-text {
-    flex: 0 0 320px;
+    flex: 0 0 240px;
+    margin-right: 30px;
   }
   
   .project-text h3 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     margin-bottom: 1rem;
     font-family: "helvetica-neue-lt-pro", sans-serif;
     font-weight: 700;
     font-style: italic;
   }
   .alt-font {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-family: "helvetica-neue-lt-pro", sans-serif;
     font-weight: 200;
     font-style: italic;
@@ -299,6 +303,7 @@
     aspect-ratio: 16 / 12; 
     border-radius: 8px;
     position: relative;
+    margin-left: 60px;
   }
   
   .project-image.pixelate{
@@ -333,35 +338,6 @@
     display: none;
   }
 
-  /* Responsive */
-  @media (max-width: 768px) {
-    .project-card {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    .project-text {
-      padding-right: 0;
-      margin-bottom: 1rem;
-    }
-  
-    .project-image {
-      width: 100%;
-      height: auto;
-    }
-  }
-
-  /* Fade-in setup */
-.hidden {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 1s ease, transform 1s ease;
-}
-
-.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
   
 .who-text{
   font-size: clamp(20px, 2.2vw, 46px);
@@ -371,33 +347,6 @@
   text-transform: uppercase; /* optional */
 }
 
-/* photo “pills” */
-.inline-img{
-  height: 0.95em;          /* scales with text size */
-  width: 2.2em;            /* pill look */
-  object-fit: cover;
-  border-radius: 999px;
-  display: inline-block;
-  vertical-align: -0.12em; /* aligns with text baseline */
-  margin: 0 0.25em;
-}
-
-/* small icon style (cap/brain) */
-.inline-icon{
-  height: 0.9em;
-  width: 0.9em;
-  object-fit: contain;
-  display: inline-block;
-  vertical-align: -0.12em;
-  margin: 0 0.2em;
-}
-
-.project-card {
-  perspective: 1000px;
-  transform-style: preserve-3d;
-  transition: transform 0.2s ease;
-  will-change: transform;
-}
 
 .project-card-inner {
   display: flex;
@@ -418,7 +367,7 @@
 .contact-section {
   width: 100%;
   text-align: center;
-  padding: 6rem 1rem;
+  padding: 20rem 1rem;
   background-color: #000000;
   color: #ffffff;
 }
@@ -434,148 +383,167 @@
   padding: 0 .30rem;
   transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
 }
+
+
 .contact-section h2:hover{
-box-shadow: inset 1000px 0 0 0 #000000;
-  color: white;
-}
-
-
-.button {
-  cursor: pointer;
-  border: none;
-  background: #000000;
-  color: #ffffff;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  overflow: hidden;
-  position: relative;
-  display: grid;
-  place-content: center;
-  transition:
-    background 300ms,
-    transform 200ms;
-  font-weight: 600;
-  margin:auto;
-}
-
-.button__text {
-  position: absolute;
-  inset: 0;
-  animation: text-rotation 8s linear infinite;
-
-  > span {
-    position: absolute;
-    transform: rotate(calc(19deg * var(--index)));
-    inset: 7px;
-  }
-}
-
-.button__circle {
-  position: relative;
-  width: 40px;
-  height: 40px;
-  overflow: hidden;
-  background: #fff;
-  color: #000000;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.button__icon--copy {
-  position: absolute;
-  transform: translate(-150%, 150%);
-}
-
-.button:hover {
-  background: #565656;
-  transform: scale(1.05);
-}
-
-.button:hover .button__icon {
-  color: #000;
-}
-
-.button:hover .button__icon:first-child {
-  transition: transform 0.3s ease-in-out;
-  transform: translate(150%, -150%);
-}
-
-.button:hover .button__icon--copy {
-  transition: transform 0.3s ease-in-out 0.1s;
-  transform: translate(0);
-}
-
-@keyframes text-rotation {
-  to {
-    rotate: 360deg;
-  }
-}
-
-.footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2rem 1rem;
-  background-color: #000000;
-  color: #ffffff;
-  font-family: "input-mono", monospace;
-  font-weight: 200;
-  font-style: italic;
-  font-size: 0.9rem;
-  border-top: 1px solid;
-  border-image: linear-gradient(to right, #000000, #474747, #717171, #bcbcbc) 1;
-  position: relative;
-  margin-top: 5rem;
-}
-
-.footer-column {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.footer-column.center {
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-}
-
-.footer-column.right {
-  justify-content: flex-end;
-}
-
-.footer a {
-  text-decoration: none;
-  color: #ffffff;
-  font-family: "input-mono", monospace;
-  font-weight: 200;
-  font-style: italic;
-  transition: color 0.3s;
-}
-
-.footer a:hover {
-  color: #1d1d1d;
-}
-
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
+  background-color: #ffffff;
+  color: black;
 }
 
 
 
-  /* Responsive layout */
-  @media (max-width: 768px) {
-    .nav-links {
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 0.75rem;
+
+
+/* =========================
+   MOBILE / TABLET OVERRIDES
+   ========================= */
+   @media (max-width: 768px) {
+
+    /* Stop forcing a fake page height on mobile */
+    #smooth-content{
+      height: auto !important;   /* overrides the fixed 9100px */
+    }
+  
+    /* HERO: center properly on mobile */
+    .hero{
+      min-height: 100svh;
+    }
+  
+    .hero__center{
+      left: auto !important;
+      margin: 0 auto !important;
+      padding: 0 1.25rem;
+      width: 100%;
+    }
+    
+
+    .hero__svg{
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      place-items: center;
+      width: 100%;
+      height: 100%;
+      display: block;
+      overflow: visible; /* prevents dots being cut when they move */
+  
+    }
+
+
+    .text{
+      transform: none !important; /* remove translateX(-50%) */
+      font-size: clamp(32px, 9vw, 56px);
+      letter-spacing: 0.04em;
+    }
+  
+    /* ABOUT: widen text */
+    .about-content p{
+      max-width: 92% !important;
+    }
+  
+    .who-copy{
+      width: min(92vw, 720px) !important;
+    }
+  
+    .who-canvas{
+      width: 100% !important;
+      height: 100% !important;
+    }
+  
+    /* PROJECTS: turn OFF the pinned horizontal layout on mobile */
+    .projects-pin{
+      height: auto !important;
+      overflow: visible !important;
+      display: block !important;
+    }
+  
+    .projects-track{
+      display: flex;
+      flex-direction: column !important;
+      gap: 2rem !important;
+      padding: 0 1rem !important;
+      transform: none !important; /* in case GSAP left a transform */
+    }
+  
+    .project-card{
+      flex: 1 1 auto !important;
+      width: 92vw !important;
+      max-width: 92vw !important;
+      height: auto !important;
+      margin: 0 auto !important;
+    }
+  
+    .project-card-inner{
+      flex-direction: column !important;
+      align-items: stretch !important;
+      gap: 1.25rem !important;
+      padding: 1.25rem !important;
+    }
+  
+    .project-text{
+      flex: none !important;
+      margin-right: 0 !important;
+      text-align: left;
+    }
+  
+    .project-image{
+      flex: none !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      height: auto !important;
+      aspect-ratio: 16 / 10;
+      margin-left: 0 !important;
+    }
+  
+    /* CONTACT: reduce huge spacing */
+    .contact-section{
+      padding: 8rem 1rem !important;
+    }
+  
+    .contact-section h2{
+      margin: 0 1rem !important;
+      font-size: clamp(2rem, 8vw, 3rem) !important;
     }
   }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   /* Sporting */
 
@@ -606,6 +574,7 @@ box-shadow: inset 1000px 0 0 0 #000000;
     gap: 4rem;
     max-width: 1200px;
     margin: 0 auto;
+    font-family: "helvetica-neue-lt-pro", sans-serif;
   }
   
   .about-left {
@@ -618,6 +587,7 @@ box-shadow: inset 1000px 0 0 0 #000000;
   font-family: "input-mono", monospace;
     font-weight: 600;
     font-style: italic;
+    color:#ffffff
 
   }
   
@@ -626,19 +596,24 @@ box-shadow: inset 1000px 0 0 0 #000000;
     color: inherit;
     font-size: 1rem;
     border-bottom: 1px solid currentColor;
-    font-family: "input-mono", monospace;
+    font-family: "helvetica-neue-lt-pro", sans-serif;
       font-weight: 200;
       font-style: italic;
+      color:#ffffff
   }
   
   .about-right {
+    font-family: "helvetica-neue-lt-pro", sans-serif;
     flex: 2;
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    color:#ffffff
+   
   }
   
   .project-details {
+    font-family: "helvetica-neue-lt-pro", sans-serif;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -646,22 +621,26 @@ box-shadow: inset 1000px 0 0 0 #000000;
     font-family: "input-mono", monospace;
       font-weight: 200;
       font-style: italic;
+      color:#ffffff
   }
   
   .detail-row {
+    font-family: "helvetica-neue-lt-pro", sans-serif;
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid #131313;
+    border-bottom: 1px solid #ffffff;
     padding-bottom: 0.5rem;
+    color:#ffffff
   }
   
   .project-description p {
     line-height: 1.6;
     margin-bottom: 1.5rem;
+    font-family: "helvetica-neue-lt-pro", sans-serif;
     font-size: 1rem;
-    font-family: "input-mono", monospace;
-      font-weight: 200;
-      font-style: italic;
+    font-weight: 200;
+    font-style: italic;
+    color:#ffffff
   }
 
 
@@ -849,6 +828,11 @@ box-shadow: inset 1000px 0 0 0 #000000;
   }
 }
 
+
+
+
+
+
  .project-hero {
     width: 100%;
     height: 100vh;
@@ -885,7 +869,7 @@ box-shadow: inset 1000px 0 0 0 #000000;
   .about-left h2 {
     margin-bottom: 2rem;
     font-size: 3rem;
-  font-family: "input-mono", monospace;
+    font-family: "input-mono", monospace;
     font-weight: 600;
     font-style: italic;
 
@@ -896,9 +880,9 @@ box-shadow: inset 1000px 0 0 0 #000000;
     color: inherit;
     font-size: 1rem;
     border-bottom: 1px solid currentColor;
-    font-family: "input-mono", monospace;
-      font-weight: 200;
-      font-style: italic;
+    font-family: "helvetica-neue-lt-pro", sans-serif;
+    font-weight: 200;
+    font-style: italic;
   }
   
   .about-right {
@@ -913,7 +897,7 @@ box-shadow: inset 1000px 0 0 0 #000000;
     flex-direction: column;
     gap: 1rem;
     font-size: 1rem;
-    font-family: "input-mono", monospace;
+    font-family: "helvetica-neue-lt-pro", sans-serif;
       font-weight: 200;
       font-style: italic;
   }
@@ -928,8 +912,8 @@ box-shadow: inset 1000px 0 0 0 #000000;
   .project-description p {
     line-height: 1.6;
     margin-bottom: 1.5rem;
-    font-size: 1rem;
-    font-family: "input-mono", monospace;
+    font-size: 1.3rem;
+    font-family: "helvetica-neue-lt-pro", sans-serif;
       font-weight: 200;
       font-style: italic;
   }
