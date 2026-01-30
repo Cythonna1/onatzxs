@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cyberweek — Sporting Kosovo</title>
+  <link rel="stylesheet" href="https://use.typekit.net/wog2xbr.css">
+  <link rel="stylesheet" href="https://use.typekit.net/wog2xbr.css">
+
+  <!-- Optional: If you want a web-safe fallback close to Helvetica Neue -->
+  <style>
+    :root{
+      --bg:#ffffff;
+      --text:#0b0b0c;
+      --muted:#6b6f76;
+      --card:#111214;
+      --cardText:#f2f3f4;
+      --cardMuted:rgba(242,243,244,.72);
+      --radius:28px;
+      --shadow: 0 18px 60px rgba(0,0,0,.12);
+      --max: 1120px;
+    }
+
+    /* Reset */
+    *,*::before,*::after{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family: 'Helvetica Neue';
+      font-style: italic;
+      font-weight: 200;
+      line-height:1.4;
+      text-rendering:optimizeLegibility;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    /* This Cyberweek campaign was designed for Sporting Kosovo as a Meta Ads campaign with the primary goal of driving website sales. The campaign included both static and animated creatives, integrating catalog products to scale across multiple items while maintaining a consistent visual identity.  */
+
+
+
+    img{ max-width:100%; display:block; }
+    a{ color:inherit; text-decoration:none; }
+
+    /* Layout helpers */
+    .container{
+      width:min(var(--max), calc(100% - 48px));
+      margin-inline:auto;
+    }
+    .section{
+      padding: 76px 0;
+    }
+    @media (max-width: 760px){
+      .section{ padding: 56px 0; }
+      .container{ width:min(var(--max), calc(100% - 32px)); }
+    }
+
+    /* Top hero */
+    .heroTop{
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 240px;
+  margin-bottom: 28px;
+  overflow: hidden;
+}
+
+/* Background PNG */
+.heroBg{
+  position: absolute;
+  inset: -10% -5%;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.heroBg img{
+  width: min(500px, 50%);
+  height: auto;
+  opacity: 1;                  /* keep it exactly as your PNG */
+  transform: translateY(-6px); /* optional tiny nudge */
+}
+  
+
+/* Phone */
+.phoneWrap{
+  position: relative;
+  z-index: 2;
+  width: min(500px, 60vw);
+  will-change: transform, opacity;
+}
+
+.phoneWrap[data-hero-phone]{
+  transform: translateY(140px);
+  opacity: 0;
+}
+
+/* End state: phone in place */
+.phoneWrap[data-hero-phone].is-in{
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 900ms cubic-bezier(.2,.9,.2,1), opacity 700ms ease;
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce){
+  .phoneWrap[data-hero-phone],
+  .phoneWrap[data-hero-phone].is-in{
+    transform: none;
+    opacity: 1;
+    transition: none;
+  }
+}
+
+
+
+
+/* GSAP-ready state */
+.phoneWrap[data-anim="phone"]{
+  transform: translateY(0);
+}
+
+
+    .intro{
+      max-width: 860px;
+      margin: 0 auto;
+      margin-top: 10%;
+      margin-bottom: 10%;
+      font-size: 25px;
+      color: #1a1c20;
+      font-family: "helvetica-neue-lt-pro", sans-serif;
+    }
+    .intro em{ font-style: italic; }
+    .intro strong{ font-weight: 400; }
+    .intro .muted{ color: var(--muted); font-style: italic; }
+    .intro p{ margin: 0; }
+
+    /* Dark card */
+    .card{
+      border-radius: var(--radius);
+      background: var(--card);
+      color: var(--cardText);
+      box-shadow: var(--shadow);
+    }
+    .systemCard{
+      padding: 44px 44px 40px;
+    }
+    @media (max-width: 760px){
+      .systemCard{ padding: 30px 22px; }
+    }
+
+    .cardTitle{
+      font-family: "helvetica-neue-lt-pro", sans-serif;
+      font-size: clamp(40px, 5vw, 70px);
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      margin: 0 0 26px 0;
+      font-weight: 900;
+      font-style: italic;
+    }
+
+    .logicGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px 80px;
+      padding-top: 60px;
+    }
+    @media (max-width: 900px){
+      .logicGrid{ gap: 22px 26px; }
+    }
+    @media (max-width: 760px){
+      .logicGrid{ grid-template-columns: 1fr; }
+    }
+
+    .logicItem h3{
+      margin:0 0 10px 0;
+      font-size: 22px;
+      font-weight: 800;
+      font-style: italic;
+      color: var(--cardText);
+    }
+    .logicItem p{
+      margin:0;
+      font-size: 18px;
+      color: var(--cardMuted);
+      max-width: 52ch;
+    }
+
+    /* Two-up image row */
+    .twoUp{
+      margin-top: 26px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    @media (max-width: 760px){
+      .twoUp{ grid-template-columns: 1fr; }
+    }
+    .imgCard{
+      border-radius: var(--radius);
+      overflow:hidden;
+      background: #0f1012;
+      box-shadow: var(--shadow);
+      aspect-ratio: 16 / 10;
+      display:grid;
+      place-items:center;
+      width:100%;
+      align-items: center;
+      margin:auto;
+    }
+    .imgCard img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+    }
+
+    /* Constraints */
+    .constraints{
+      padding-top: 86px;
+    }
+    .constraintsGrid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 28px;
+      align-items: end;
+    }
+    @media (max-width: 900px){
+      .constraintsGrid{ grid-template-columns: 1fr; }
+    }
+
+    .constraintsText{
+      max-width: 62ch;
+      color:#1a1c20;
+      font-size: 22px;
+    }
+    .constraintsText p{ margin:0; }
+    .constraintsTitle{
+      font-size: clamp(44px, 5.8vw, 78px);
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+      margin: 0;
+      font-weight: 950;
+      text-align: right;
+    }
+    @media (max-width: 900px){
+      .constraintsTitle{ text-align:left; margin-top: 8px; }
+    }
+
+    /* Big image */
+    .bigVisual{
+      margin-top: 34px;
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      background:#0f1012;
+      aspect-ratio: 16 / 9;
+    }
+    .bigVisual img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      transform: scale(1.01);
+    }
+
+    /* Optional small spacing tweaks */
+    .stack{ display:grid; gap: 18px; }
+
+    /* Utility: fade-in hooks for GSAP later */
+    .reveal{ opacity:1; transform:none; } /* keep visible by default; GSAP can override */
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <div class="heroTop">
+
+  <!-- Background PNG (pixel CYBER WEEK) -->
+  <div class="heroBg">
+    <img src="images/Cyberweek/CyberHero.png" alt="" aria-hidden="true" />
+  </div>
+
+  <!-- Foreground PNG (phone) -->
+  <div class="phoneWrap" data-hero-phone>
+    <img src="images/Cyberweek/HeroMockup.png" alt="Cyberweek Meta Ad preview on mobile" />
+  </div>
+
+</div>
+
+      <div class="intro reveal">
+        <p>
+          This <strong><em>Cyberweek</em></strong> campaign was designed for <strong>Sporting Kosovo</strong> as a
+          <strong><em>Meta Ads</em></strong> campaign with the primary goal of driving website sales. The campaign
+          included both <strong>static</strong> and <strong>animated</strong> creatives, integrating
+          <strong><em>catalog products</em></strong> to scale across multiple items while maintaining a consistent
+          visual identity.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <!-- VISUAL SYSTEM LOGIC -->
+  <section class="section">
+    <div class="container stack">
+
+      <div class="card systemCard reveal">
+        <h2 class="cardTitle">Visual System<br/>Logic</h2>
+
+        <div class="logicGrid">
+          <div class="logicItem">
+            <h3>Consistent campaign markers</h3>
+            <p>
+              Cyberweek identifiers were used as recurring visual markers across posts and stories, functioning as badges
+              within the layout. A pixel-inspired aesthetic was adopted as the core visual theme.
+            </p>
+          </div>
+
+          <div class="logicItem">
+            <h3>Modular layout system</h3>
+            <p>
+              The minimal structure created clear zones for offer, product, and branding, making it easily adaptable to
+              website banners, product posts, and catalog ads across mobile and desktop.
+            </p>
+          </div>
+
+          <div class="logicItem">
+            <h3>Motion as an extension, not a redesign</h3>
+            <p>
+              The animated creative was developed directly from the static layout, using motion only to enhance hierarchy
+              and attention while preserving the same spacing, structure, and visual language.
+            </p>
+          </div>
+
+          <div class="logicItem">
+            <h3>Mobile-first readability</h3>
+            <p>
+              Generous white space and controlled typography ensure fast readability on small screens while keeping
+              sufficient focus on catalog products for scroll-based placements.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Two images under the card -->
+      <div class="twoUp">
+        <figure class="imgCard reveal">
+          <img src="images/Cyberweek/campaignmockup.jpg" alt="Cyberweek static creative mock" />
+        </figure>
+        <figure class="imgCard reveal">
+          <img src="images/Cyberweek/PortfolioCyber.jpg" alt="Cyberweek creative variation mock" />
+        </figure>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONSTRAINTS -->
+  <section class="section constraints">
+    <div class="container">
+      <div class="constraintsGrid">
+        <div class="constraintsText reveal">
+          <p>
+            A key challenge of this campaign was that <strong>Cyberweek</strong> in this region is traditionally associated
+            with technology brands rather than sports retail. To address this, <strong>catalog-based ads</strong> were used
+            as the central strategy. Presenting products directly within the Cyberweek visual framework helped break the
+            “tech-only” perception while preserving the recognizable, tech-inspired Cyberweek aesthetic.
+          </p>
+        </div>
+
+        <h2 class="constraintsTitle reveal">Constraints &amp;<br/>Strategic<br/>Response</h2>
+      </div>
+
+      <div class="bigVisual reveal" style="margin-top:34px;">
+        <img src="images/Cyberweek/campaignmockup2.jpg" alt="Cyberweek hero mock on device" />
+      </div>
+    </div>
+  </section>
+
+  <!-- (Optional) PERFORMANCE SECTION IF YOU WANT IT LATER -->
+  <!--
+  <section class="section">
+    <div class="container">
+      <h2 style="font-size:42px; font-weight:900; letter-spacing:-.02em; margin:0 0 16px;">Performance-aware decisions</h2>
+      <ul style="margin:0; padding-left:18px; color:#1a1c20; max-width:70ch;">
+        <li>Mobile-first layout structure</li>
+        <li>Minimal visual clutter to keep focus on product and offer</li>
+        <li>Cyberweek message readable in the first moment of scroll</li>
+      </ul>
+    </div>
+  </section>
+  -->
+  <script>
+    window.addEventListener("load", () => {
+      const phone = document.querySelector("[data-hero-phone]");
+      if (!phone) return;
+  
+      // Small delay feels nicer
+      requestAnimationFrame(() => {
+        setTimeout(() => phone.classList.add("is-in"), 80);
+      });
+    });
+  </script>
+
+  <!-- JS placeholder (GSAP later) -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollSmoother.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js"></script>
+        
+        <!-- only keep these IF you truly use them in script.js -->
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollToPlugin.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrambleTextPlugin.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/SplitText.min.js"></script>
+
+        
+</body>
+</html>
