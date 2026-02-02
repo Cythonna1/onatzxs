@@ -370,6 +370,7 @@
   padding: 20rem 1rem;
   background-color: #000000;
   color: #ffffff;
+    text-decoration: none;
 }
 
 .contact-section h2 {
@@ -382,12 +383,14 @@
   margin: 0 25rem;
   padding: 0 .30rem;
   transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+    text-decoration: none;
 }
 
 
 .contact-section h2:hover{
   background-color: #ffffff;
   color: black;
+    text-decoration: none;
 }
 
 .h2-link{
