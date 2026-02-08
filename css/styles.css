@@ -1,46 +1,580 @@
-
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    background-color: #000;
-  }
-  #smooth-content {
-    overflow: visible;
-  width: 100%;
-  /* set a height because the contents are position: absolute, thus natively there's no height */
-  height: auto;
-  }
-   /* Normal vertical sections */
-  .hero, .about-us, .contact-section{
-  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #000;
+}
+#smooth-content {
+  overflow: visible;
+width: 100%;
+/* set a height because the contents are position: absolute, thus natively there's no height */
+height: auto;
+}
+ /* Normal vertical sections */
+.hero, .about-us, .contact-section{
+min-height: 100vh;
 }
 
 .hero__center {
-  will-change: transform, opacity, filter;
-  margin:auto;
-  left:27%;
+will-change: transform, opacity, filter;
+margin:auto;
 }
 #portfolioText {
-  display: inline-block;
-  will-change: transform, opacity, filter;
+display: inline-block;
+will-change: transform, opacity, filter;
 }
 
 .hero { position: relative; }
 .hero__center { position: relative; z-index: 2; }
 
+
+.hero{
   
+  width: 100%;
+  overflow: hidden;
+  background: #000; /* or your current bg */
+  display: grid;
+  place-items: center;
+}
+
+.hero__svg{
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible; /* prevents dots being cut when they move */
+
+}
+
+
+.dot-svg{
+position: absolute;
+inset: 0;
+width: 100%;
+height: 100%;
+display: block;
+pointer-events: none;
+overflow: visible; /* important for Safari too */
+}
+
+.hero__center{
+  position: relative;
+  z-index: 2; /* above svgs */
+  text-align: center;
+}
+
+.text{
+  font-family: "input-mono";
+  font-weight: 300;
+  font-size: clamp(36px, 6vw, 100px);
+  letter-spacing: 0.06em;
+  color: #fff;
+  margin: 0;
+  z-index: 100;
+  text-align: center;
+  will-change: transform;
+}
+.hero .hero-title,
+.hero .hero-subtitle {
+ position: relative;
+ z-index: 2;
+}
+
+
+.dot-cloud > * {
+  transform-box: fill-box;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+
+
+.about-us {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 2s ease, transform 1s ease;
+}
+
+.about-us.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about-content h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.about-content p {
+  font-size: 1.1rem;
+  max-width: 60%;
+  margin: 0 auto;
+  text-decoration: none;
+  color: #eeeeee;
+  font-family: "input-mono", monospace;
+  font-weight: 200;
+  font-style: italic;
+  display:block;
+}
+
+.who-reveal{
+  position: relative;
+  max-width: 100%;
+  
+}
+
+.who-html{
+  position: relative;
+  z-index: 1;
+  opacity: 0;     
+}
+
+.who-canvas{
+  position: absolute;
+  inset: 0;
+  width: 70%;
+  height: 70%;
+  z-index: 2;
+  pointer-events: none;
+  margin:auto;
+  
+}
+
+.who-title{
+  font-family: "helvetica-neue-lt-pro", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+  font-size: clamp(20px, 2.7vw, 46px);
+  margin-bottom: 3%;
+  color: #fff;
+}  
+
+.who-copy{
+  font-family: "helvetica-neue-lt-pro", sans-serif;
+  font-weight: 200;
+  font-style: italic;
+  font-size: clamp(17px, 2vw, 38px);
+  line-height: 1.4;
+  word-spacing: 0.10em;
+  width:70%;
+  letter-spacing: 0.05em;
+  color: #fff;
+  margin:auto;
+  white-space: normal;
+}
+
+.who-copy .char{
+  display: inline;
+  position: relative;
+  white-space: pre;
+  line-height: inherit;
+  vertical-align: baseline;
+}
+
+.who-copy .char::after{
+  content: attr(data-scr);
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  opacity: 0;
+  line-height: inherit;
+}
+
+.who-copy .char.pix-on{
+  color: transparent; /* keeps width, so no pushing */
+}
+
+.who-copy .char.pix-on::after{
+  opacity: 1;
+  color: #fff;
+}
+
+.who-copy, .who-copy * {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+/* photo â€œpillsâ€ */
+.inline-img{
+  height: 4em;          /* scales with text size */
+  width: 6em;            /* pill look */
+  object-fit: cover;
+  border-radius: 999px;
+  display: inline-block;
+  vertical-align: -0.12em; /* aligns with text baseline */
+  margin: 0 0.25em;
+}
+
+/* small icon style (cap/brain) */
+.inline-icon{
+  height: 0.9em;
+  width: 0.9em;
+  object-fit: contain;
+  display: inline-block;
+  vertical-align: -0.12em;
+  margin: 0 0.2em;
+}
+/* Hidden class for fade-in setup */
+
+
+.projects-section{
+position: relative;
+width: 100%;
+background: transparent;
+display: block;     /* <-- IMPORTANT */
+}
+
+.projects-pin{
+position: relative;
+height: 100vh;
+overflow: hidden;
+background: #000;
+display: flex;
+align-items: center;
+}
+
+.projects-track{
+display: flex;
+flex-wrap: nowrap;
+gap: 100px;
+padding: 0 8vw;
+will-change: transform;
+}
+
+.project-card{
+flex: 0 0 120vw;      /* force horizontal */
+max-width: 1200px;   /* keep your â€œnice blockâ€ limit */
+height: 70vh;
+margin: 5vw;
+background: #000;
+}
+.project-text {
+  flex: 0 0 240px;
+  margin-right: 30px;
+}
+
+.project-text h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  font-family: "helvetica-neue-lt-pro", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+.alt-font {
+  font-size: 1.4rem;
+  font-family: "helvetica-neue-lt-pro", sans-serif;
+  font-weight: 200;
+  font-style: italic;
+  word-spacing: 0.1em;
+
+}
+.project-text p {
+  font-size: 1.0rem;
+  line-height: 1.5;
+  font-family: "helvetica-neue-lt-pro", sans-serif;
+  font-weight: 100;
+  font-style: italic;
+  letter-spacing: 0.05em;
+}
+
+.project-image {
+  flex: 1;
+  max-width: 900px; 
+  height:90%;
+  overflow: hidden;
+  aspect-ratio: 16 / 12; 
+  border-radius: 8px;
+  position: relative;
+  margin-left: 60px;
+}
+
+.project-image.pixelate{
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.project-image.pixelate img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.project-image.pixelate .img-default{ z-index: 1; opacity: 1; }
+.project-image.pixelate .img-hover  { z-index: 2; opacity: 0; }
+
+.project-image.pixelate .pixel-grid{
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+
+.pixel{
+  position: absolute;
+  background: rgba(0, 0, 0, 0.95);
+  display: none;
+}
+
+
+.who-text{
+font-size: clamp(20px, 2.2vw, 46px);
+line-height: 1.35;
+letter-spacing: 0.02em;
+font-style: italic; /* if you're going for that look */
+text-transform: uppercase; /* optional */
+}
+
+
+.project-card-inner {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 2rem;
+background: #000000;
+border-radius: 12px;
+transform-style: preserve-3d;
+transition: transform 0.2s ease;
+will-change: transform;
+}
+
+.project-text{
+color: #fff;
+}
+
+.contact-section {
+width: 100%;
+text-align: center;
+padding: 20rem 1rem;
+background-color: #000000;
+color: #ffffff;
+text-decoration: none;
+}
+
+.contact-section h2 {
+font-size: 4rem;
+font-family: "input-mono", monospace;
+  font-weight: 500;
+  font-style: italic;
+  box-shadow: inset 0 0 0 0 #000000;
+color: #ffffff;
+margin: 0 25rem;
+padding: 0 .30rem;
+transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+text-decoration: none;
+}
+
+
+.contact-section h2:hover{
+background-color: #ffffff;
+color: black;
+text-decoration: none;
+}
+
+.h2-link{
+text-decoration: none;
+}
+
+
+
+
+
+/* =========================
+ MOBILE / TABLET OVERRIDES
+ ========================= */
+ @media (max-width: 768px) {
+
+
+  /* Stop forcing a fake page height on mobile */
+  #smooth-content{
+    height: auto !important;   /* overrides the fixed 9100px */
+  }
+
+  .body{
+    height:auto
+  }
+
+  /* HERO: center properly on mobile */
   .hero{
+    min-height: 45svh;
+    padding: 0;
+    margin:0;
+    
+  }
+
+  .hero__center{
+    left: auto !important;
+    margin: 0 auto !important;
+    padding: 0;
     width: 100%;
-    overflow: hidden;
-    background: #000; /* or your current bg */
-    display: grid;
-    place-items: center;
   }
   
+
+  .hero__svg{
+    position: absolute;
+    inset: 1;
+    pointer-events: none;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible; /* prevents dots being cut when they move */
+
+  }
+
+
+  .text{
+    transform: none !important; /* remove translateX(-50%) */
+    font-size: clamp(32px, 9vw, 56px);
+    letter-spacing: 0.04em;
+  }
+
+  /* ABOUT: widen text */
+  .about-content p{
+    max-width: 92% !important;
+  }
+
+  .who-copy{
+    width: min(75vw, 550px) !important;
+  }
+
+  .who-canvas{
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  /* PROJECTS: turn OFF the pinned horizontal layout on mobile */
+  .projects-pin{
+    height: auto !important;
+    overflow: visible !important;
+    display: block !important;
+  }
+
+  .projects-track{
+    display: flex;
+    flex-direction: column !important;
+    gap: 2rem !important;
+    padding: 0 1rem !important;
+    transform: none !important; /* in case GSAP left a transform */
+  }
+
+  .project-card{
+    flex: 1 1 auto !important;
+    width: 92vw !important;
+    max-width: 92vw !important;
+    height: auto !important;
+    margin: 0 auto !important;
+  }
+
+  .project-card-inner{
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 1.25rem !important;
+    padding: 1.25rem !important;
+  }
+
+  .project-text{
+    flex: none !important;
+    margin-right: 0 !important;
+    text-align: left;
+  }
+
+  .project-image{
+    flex: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 10;
+    margin-left: 0 !important;
+  }
+
+  /* CONTACT: reduce huge spacing */
+  .contact-section{
+    padding: 8rem 1rem !important;
+  }
+
+  .contact-section h2{
+    margin: 0 1rem !important;
+    font-size: clamp(2rem, 8vw, 3rem) !important;
+  }
+}
+
+
+
+
+
+
+/* ===== Mobile layout (Figma-style) ===== */
+@media (max-width: 768px) {
+html, body { width: 100%; overflow-x: hidden; }
+body { background: #000; }
+html, body { overflow-x: hidden; }
+
+.hero { 
+  overflow: visible; /* allow dot cloud to extend outside hero box on mobile */
+}
+
+.hero__svg,
+.hero__svg--top,
+.hero__svg--bottom { 
+  overflow: visible;
+}
+
+/* scale & offset each dot SVG */
+.hero__svg--top .dot-svg,
+.hero__svg--bottom .dot-svg{
+  width: 140%;
+  height: 140%;
+  left: -20%;
+  top: -20%;
+}
+
+
+
+  /* Stop forcing a fake page height on mobile */
+  #smooth-content{
+    height: auto !important;   /* overrides the fixed 9100px */
+  }
+
+  .body{
+    height:auto
+  }
+
+  /* HERO: center properly on mobile */
+  .hero{
+    min-height: 45svh;
+    padding: 0;
+    margin:0;
+    
+  }
+
+  .hero__center{
+    left: auto !important;
+    margin: 0 auto !important;
+    padding: 0;
+    width: 100%;
+  }
+  
+
   .hero__svg{
     position: absolute;
     inset: 0;
@@ -52,467 +586,113 @@
     overflow: visible; /* prevents dots being cut when they move */
 
   }
-  
+#portfolioText{
+  font-size: 44px;
+  line-height: 1.05;
+  letter-spacing: 0.04em;
+  text-align: center;
+}
 
-.dot-svg{
-  position: absolute;
-  inset: 0;
+
+/* ABOUT */
+.about-us{
+  min-height: auto;
+  padding: 52px 20px 24px;
+  text-align: center;
+}
+.who-title{
+  font-size: 16px;
+  letter-spacing: 0.14em;
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+.who-copy{
+  font-size: 12px;
+  line-height: 1.6;
+  max-width: 360px;
+  margin: 0 auto;
+  opacity: 0.85;
+  font-weight: 300;
+  text-transform: none;
+}
+
+/* PROJECT LIST (stacked cards like your Figma) */
+.projects-section{
+  padding: 10px 0 44px;
+}
+.projects-pin{
+  height: auto !important;
+  overflow: visible !important;
+  display: block !important;
+}
+.projects-track{
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 26px !important;
+  padding: 0 2px !important;
+  transform: none !important;
+}
+.project-card{
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  max-width: 420px !important;
+  height: auto !important;
+  margin: 0 auto !important;
+  background: transparent !important;
+}
+.project-card-inner{
+  display: flex !important;
+  flex-direction: column-reverse !important; /* image first, then text */
+  gap: 12px !important;
+  padding: 0 !important;
+}
+.project-image{
+  width: 100% !important;
+  aspect-ratio: 3 / 2;
+  border-radius: 18px !important;
+  overflow: hidden !important;
+  background: #d9d9d9;
+}
+.project-image img{
   width: 100%;
   height: 100%;
+  object-fit: cover;
   display: block;
-  pointer-events: none;
-  overflow: visible; /* important for Safari too */
 }
-
-  .hero__center{
-    position: relative;
-    z-index: 2; /* above svgs */
-    text-align: center;
-  }
-  
-  .text{
-    font-family: "input-mono";
-    font-weight: 300;
-    font-size: clamp(36px, 6vw, 100px);
-    letter-spacing: 0.06em;
-    color: #fff;
-    margin: 0;
-    transform: translateX(-50%);
-    z-index: 100;
-    text-align: center;
-    will-change: transform;
-  }
-  .hero .hero-title,
-  .hero .hero-subtitle {
-   position: relative;
-   z-index: 2;
+.img-hover,
+.pixel-grid{
+  display: none !important;
 }
-
-
-  .dot-cloud > * {
-    transform-box: fill-box;
-    transform-origin: center;
-    will-change: transform, opacity;
-  }
-
-
-
-  .about-us {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 2rem;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 2s ease, transform 1s ease;
-}
-  
-  .about-us.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  .about-content h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: #fff;
-  }
-  
-  .about-content p {
-    font-size: 1.1rem;
-    max-width: 60%;
-    margin: 0 auto;
-    text-decoration: none;
-    color: #eeeeee;
-    font-family: "input-mono", monospace;
-    font-weight: 200;
-    font-style: italic;
-    display:block;
-  }
-
-  .who-reveal{
-    position: relative;
-    max-width: 100%;
-    
-  }
-  
-  .who-html{
-    position: relative;
-    z-index: 1;
-    opacity: 0;     
-  }
-  
-  .who-canvas{
-    position: absolute;
-    inset: 0;
-    width: 70%;
-    height: 70%;
-    z-index: 2;
-    pointer-events: none;
-    margin:auto;
-    
-  }
-
-  .who-title{
-    font-family: "helvetica-neue-lt-pro", sans-serif;
-    font-weight: 200;
-    font-style: normal;
-    font-size: clamp(20px, 2.7vw, 46px);
-    margin-bottom: 3%;
-    color: #fff;
-  }  
-
-  .who-copy{
-    font-family: "helvetica-neue-lt-pro", sans-serif;
-    font-weight: 100;
-    font-style: italic;
-    font-size: clamp(17px, 2vw, 38px);
-    line-height: 1.4;
-    word-spacing: 0.10em;
-    width:70%;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: #fff;
-    margin:auto;
-    white-space: normal;
-  }
-  
-  .who-copy .char{
-    display: inline;
-    position: relative;
-    white-space: pre;
-    line-height: inherit;
-    vertical-align: baseline;
-  }
-  
-  .who-copy .char::after{
-    content: attr(data-scr);
-    position: absolute;
-    left: 0;
-    top: 0;
-    pointer-events: none;
-    opacity: 0;
-    line-height: inherit;
-  }
-  
-  .who-copy .char.pix-on{
-    color: transparent; /* keeps width, so no pushing */
-  }
-  
-  .who-copy .char.pix-on::after{
-    opacity: 1;
-    color: #fff;
-  }
-  
-  .who-copy, .who-copy * {
-    -webkit-font-smoothing: antialiased;
-    text-rendering: geometricPrecision;
-  }
-  
-  /* photo “pills” */
-  .inline-img{
-    height: 4em;          /* scales with text size */
-    width: 6em;            /* pill look */
-    object-fit: cover;
-    border-radius: 999px;
-    display: inline-block;
-    vertical-align: -0.12em; /* aligns with text baseline */
-    margin: 0 0.25em;
-  }
-  
-  /* small icon style (cap/brain) */
-  .inline-icon{
-    height: 0.9em;
-    width: 0.9em;
-    object-fit: contain;
-    display: inline-block;
-    vertical-align: -0.12em;
-    margin: 0 0.2em;
-  }
-/* Hidden class for fade-in setup */
-
-
-  .projects-section{
-  position: relative;
-  width: 100%;
-  background: transparent;
-  display: block;     /* <-- IMPORTANT */
-}
-
-.projects-pin{
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
-  background: #000;
-  display: flex;
-  align-items: center;
-}
-
-.projects-track{
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 100px;
-  padding: 0 8vw;
-  will-change: transform;
-}
-
-.project-card{
-  flex: 0 0 120vw;      /* force horizontal */
-  max-width: 1200px;   /* keep your “nice block” limit */
-  height: 70vh;
-  margin: 5vw;
-  background: #000;
-}
-  .project-text {
-    flex: 0 0 240px;
-    margin-right: 30px;
-  }
-  
-  .project-text h3 {
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-    font-family: "helvetica-neue-lt-pro", sans-serif;
-    font-weight: 700;
-    font-style: italic;
-  }
-  .alt-font {
-    font-size: 1.4rem;
-    font-family: "helvetica-neue-lt-pro", sans-serif;
-    font-weight: 200;
-    font-style: italic;
-    word-spacing: 0.1em;
-
-  }
-  .project-text p {
-    font-size: 1.0rem;
-    line-height: 1.5;
-    font-family: "helvetica-neue-lt-pro", sans-serif;
-    font-weight: 100;
-    font-style: italic;
-    letter-spacing: 0.05em;
-  }
-  
-  .project-image {
-    flex: 1;
-    max-width: 900px; 
-    height:90%;
-    overflow: hidden;
-    aspect-ratio: 16 / 12; 
-    border-radius: 8px;
-    position: relative;
-    margin-left: 60px;
-  }
-  
-  .project-image.pixelate{
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-  }
-  
-  .project-image.pixelate img{
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  
-  .project-image.pixelate .img-default{ z-index: 1; opacity: 1; }
-  .project-image.pixelate .img-hover  { z-index: 2; opacity: 0; }
-  
-  .project-image.pixelate .pixel-grid{
-    position: absolute;
-    inset: 0;
-    z-index: 3;
-    pointer-events: none;
-  }
-  
-  
-  .pixel{
-    position: absolute;
-    background: rgba(0, 0, 0, 0.95);
-    display: none;
-  }
-
-  
-.who-text{
-  font-size: clamp(20px, 2.2vw, 46px);
-  line-height: 1.35;
-  letter-spacing: 0.02em;
-  font-style: italic; /* if you're going for that look */
-  text-transform: uppercase; /* optional */
-}
-
-
-.project-card-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2rem;
-  background: #000000;
-  border-radius: 12px;
-  transform-style: preserve-3d;
-  transition: transform 0.2s ease;
-  will-change: transform;
-}
-
 .project-text{
-  color: #fff;
+  margin: 0 !important;
+  padding: 0 4px;
+  text-align: left;
 }
-  
-.contact-section {
-  width: 100%;
+.project-text h3{
+  font-size: 10px;
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+.project-text p{
+  font-size: 11px;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+/* CONTACT */
+.contact-section{
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 0 20px;
   text-align: center;
-  padding: 20rem 1rem;
-  background-color: #000000;
-  color: #ffffff;
-    text-decoration: none;
 }
-
-.contact-section h2 {
-  font-size: 4rem;
-  font-family: "input-mono", monospace;
-    font-weight: 500;
-    font-style: italic;
-    box-shadow: inset 0 0 0 0 #000000;
-  color: #ffffff;
-  margin: 0 25rem;
-  padding: 0 .30rem;
-  transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
-    text-decoration: none;
+.contact-section h2{
+  font-size: 44px;
+  line-height: 1.0;
+  letter-spacing: 0.06em;
 }
-
-
-.contact-section h2:hover{
-  background-color: #ffffff;
-  color: black;
-    text-decoration: none;
 }
-
-.h2-link{
-  text-decoration: none;
-}
-
-
-
-
-/* =========================
-   MOBILE / TABLET OVERRIDES
-   ========================= */
-   @media (max-width: 768px) {
-
-    /* Stop forcing a fake page height on mobile */
-    #smooth-content{
-      height: auto !important;   /* overrides the fixed 9100px */
-    }
-  
-    /* HERO: center properly on mobile */
-    .hero{
-      min-height: 100svh;
-    }
-  
-    .hero__center{
-      left: auto !important;
-      margin: 0 auto !important;
-      padding: 0 1.25rem;
-      width: 100%;
-    }
-    
-
-    .hero__svg{
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      place-items: center;
-      width: 100%;
-      height: 100%;
-      display: block;
-      overflow: visible; /* prevents dots being cut when they move */
-  
-    }
-
-
-    .text{
-      transform: none !important; /* remove translateX(-50%) */
-      font-size: clamp(32px, 9vw, 56px);
-      letter-spacing: 0.04em;
-    }
-  
-    /* ABOUT: widen text */
-    .about-content p{
-      max-width: 92% !important;
-    }
-  
-    .who-copy{
-      width: min(92vw, 720px) !important;
-    }
-  
-    .who-canvas{
-      width: 100% !important;
-      height: 100% !important;
-    }
-  
-    /* PROJECTS: turn OFF the pinned horizontal layout on mobile */
-    .projects-pin{
-      height: auto !important;
-      overflow: visible !important;
-      display: block !important;
-    }
-  
-    .projects-track{
-      display: flex;
-      flex-direction: column !important;
-      gap: 2rem !important;
-      padding: 0 1rem !important;
-      transform: none !important; /* in case GSAP left a transform */
-    }
-  
-    .project-card{
-      flex: 1 1 auto !important;
-      width: 92vw !important;
-      max-width: 92vw !important;
-      height: auto !important;
-      margin: 0 auto !important;
-    }
-  
-    .project-card-inner{
-      flex-direction: column !important;
-      align-items: stretch !important;
-      gap: 1.25rem !important;
-      padding: 1.25rem !important;
-    }
-  
-    .project-text{
-      flex: none !important;
-      margin-right: 0 !important;
-      text-align: left;
-    }
-  
-    .project-image{
-      flex: none !important;
-      width: 100% !important;
-      max-width: 100% !important;
-      height: auto !important;
-      aspect-ratio: 16 / 10;
-      margin-left: 0 !important;
-    }
-  
-    /* CONTACT: reduce huge spacing */
-    .contact-section{
-      padding: 8rem 1rem !important;
-    }
-  
-    .contact-section h2{
-      margin: 0 1rem !important;
-      font-size: clamp(2rem, 8vw, 3rem) !important;
-    }
-  }
-  
-
 
 
 
@@ -657,6 +837,7 @@
     padding: 4rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
+
   }
   
   .horizontal img {
