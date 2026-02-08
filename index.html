@@ -1002,7 +1002,22 @@
         <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/SplitText.min.js"></script>
         
         <script src="js/script.js"></script>
-            
-      <script src="js/script.js"></script>
+<script>
+// kill GSAP pinned/scroll-smoother effects on small screens
+(function killMobileGSAP(){
+  try {
+    if (window.matchMedia && window.matchMedia("(max-width: 768px)").matches) {
+      if (window.ScrollTrigger && ScrollTrigger.getAll) {
+        ScrollTrigger.getAll().forEach(t => t.kill(true));
+      }
+      if (window.ScrollSmoother && ScrollSmoother.get) {
+        const s = ScrollSmoother.get();
+        if (s) s.kill();
+      }
+      document.documentElement.classList.add("is-mobile");
+    }
+  } catch(e) {}
+})();
+</script>
 </body>
 </html>
